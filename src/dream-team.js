@@ -13,7 +13,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-function createDreamTeam(members ) {
+const createDreamTeam = members => {
 	if (!Array.isArray(members)) return false;
 	return members
 		.filter((item) => typeof item === 'string')

@@ -11,7 +11,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 
-function encodeLine(str) {
+const encodeLine = str => {
 	return str.split('').reduce((acc, item, i, arr) => {
 		if (arr[i] === arr[i + 1]) {
 			acc[1]++;

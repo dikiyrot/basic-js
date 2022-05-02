@@ -14,7 +14,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }
  *
  */
-function calculateHanoi(disksNumber, turnsSpeed ) {
+const calculateHanoi = (disksNumber, turnsSpeed ) => {
   const minTurns = 2 ** disksNumber - 1;
   const minTime = Math.floor(minTurns / (turnsSpeed / 3600));
 

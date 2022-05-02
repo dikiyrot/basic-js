@@ -24,7 +24,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]
  */
 
-function minesweeper(matrix) {
+const minesweeper = matrix => {
 	const neighbours = [
 		[1, -1],
 		[1, 0],

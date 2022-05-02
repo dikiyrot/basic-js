@@ -15,7 +15,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 
-const isMAC48Address = (inputString) => {
+const isMAC48Address = inputString => {
 	const arr = inputString.split('-');
 
 	return arr.length === 6 && arr.every(str => /^[0-9A-F]{2}$/.test(str));

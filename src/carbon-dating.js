@@ -17,7 +17,7 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-function dateSample(sampleActivity ) {
+const dateSample = sampleActivity => {
 	if (
 		typeof sampleActivity !== 'string' ||
 		isNaN(+sampleActivity) ||
