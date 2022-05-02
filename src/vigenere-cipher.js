@@ -19,15 +19,58 @@ const { NotImplementedError } = require('../extensions/index.js');
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
-class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+ class VigenereCipheringMachine {
+	constructor(type = true) {
+		this.type = type;
+	}
+
+	encrypt(message, key) {
+		if (!message || !key) {
+			throw new Error(`Incorrect arguments!`);
+		 }
+		
+		const lang = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		key = key.toUpperCase();
+
+		const arr = message
+			.toUpperCase().split('')
+			.filter((el) => lang.includes(el))
+			.reduce((acc, item, i) => {
+				const index = (lang.indexOf(item) + lang.indexOf(key[i % key.length])) % lang.length;
+				(lang.indexOf(item) >= 0) ? acc.push(lang[index]) : acc.push(item);
+				return acc;
+			},[])
+			.reverse();
+
+	  	const res = [...message].reduce((acc, item) => 
+		  	lang.includes(item.toUpperCase()) ? [...acc, arr.pop()]  : [...acc, item], []);
+
+		return this.type ? res.join("") : res.reverse().join("");
+	}
+
+	decrypt(message, key) {
+		if (!message || !key) {
+			throw new Error(`Incorrect arguments!`);
+		 }
+		
+		const lang = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		key = key.toUpperCase();
+
+		const arr = message
+			.toUpperCase().split('')
+			.filter((el) => lang.includes(el))
+			.reduce((acc, item, i) => {
+				const index = (lang.indexOf(item) + lang.length - lang.indexOf(key[i % key.length])) % lang.length;
+				(lang.indexOf(item) >= 0) ? acc.push(lang[index]) : acc.push(item);
+				return acc;
+			},[])
+			.reverse();
+
+	  	const res = [...message].reduce((acc, item) => 
+		  	lang.includes(item.toUpperCase()) ? [...acc, arr.pop()] : [...acc, item], []);
+
+		return this.type ? res.join("") : res.reverse().join("");
+	}
 }
 
 module.exports = {
